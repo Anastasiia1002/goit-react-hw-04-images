@@ -23,30 +23,30 @@ function ImageGallery({ searchN, pageN, loadMore }) {
   const [largeImageId, setLargeImageId] = useState('');
   const [largeImageIdUser, setLargeImageIdUser] = useState('');
 
-  // useEffect(() => {
-  //   if (!searchN) {
-  //     return;
-  //   }
-  //   setStatus(Status.PENDING);
-  //   apiImages
-  //     .searchImages(searchN)
-  //     .then(
-  //       images => setImages(prevImg => [...images]),
-  //       setStatus(Status.RESOLVED)
-  //     )
-  //     .catch(error => {
-  //       setError(error);
-  //       setStatus(Status.REJECTED);
-  //     });
-  // }, [searchN]);
-
   useEffect(() => {
-    // if (pageN === 1) {
-    //   return;
-    // }
     if (!searchN) {
       return;
     }
+    setStatus(Status.PENDING);
+    apiImages
+      .searchImages(searchN)
+      .then(
+        images => setImages(prevImg => [...images]),
+        setStatus(Status.RESOLVED)
+      )
+      .catch(error => {
+        setError(error);
+        setStatus(Status.REJECTED);
+      });
+  }, [searchN]);
+
+  useEffect(() => {
+    if (pageN === 1 || !searchN) {
+      return;
+    }
+    // if (!searchN) {
+    //   return;
+    // }
     setStatus(Status.PENDING);
     apiImages
       .searchImages(searchN, pageN)
