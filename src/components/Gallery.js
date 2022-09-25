@@ -23,7 +23,7 @@ function Gallery() {
   // }
 
   const loadMore = () => {
-    setPage(s => s + 1);
+    setPage(page + 1);
   };
 
   return (
