@@ -44,9 +44,6 @@ function ImageGallery({ searchN, pageN, loadMore }) {
     if (pageN === 1 || !searchN) {
       return;
     }
-    // if (!searchN) {
-    //   return;
-    // }
     setStatus(Status.PENDING);
     apiImages
       .searchImages(searchN, pageN)
@@ -60,70 +57,11 @@ function ImageGallery({ searchN, pageN, loadMore }) {
       });
   }, [pageN, searchN]);
 
-  //  componentDidUpdate(prevProps, prevState) {
-  // const prevSearch = prevProps.search;
-  // const nextSearch = this.props.search;
-
-  //   if (prevSearch !== nextSearch) {
-  //     this.setState({ status: Status.PENDING });
-
-  //     apiImages
-  //       .searchImages(nextSearch, this.props.page)
-  //       .then(images =>
-  //         this.setState(prev => ({
-  //           images: [...images],
-  //           status: Status.RESOLVED,
-  //         }))
-  //       )
-  //       .catch(error => this.setState({ error, status: Status.REJECTED }));
-  //   }
-  //   if (prevProps.page !== this.props.page && this.props.page !== 1) {
-  //     apiImages
-  //       .searchImages(nextSearch, this.props.page)
-  //       .then(images =>
-  //         this.setState(prev => ({
-  //           images: [...prev.images, ...images],
-  //           status: Status.RESOLVED,
-  //         }))
-  //       )
-  //       .catch(error => this.setState({ error, status: Status.REJECTED }));
-  //   }
-  // }
-  // useEffect(() => {
-  //   if (!search) return;
-  //   setStatus('pending');
-  //   apiImages
-  //     .searchImages(search, page)
-  //     .then(
-  //       images => setImages(prevImg => [...prevImg, ...images]),
-  //       setStatus('resolved')
-  //     )
-  //     .catch(
-  //       error => error
-  //       // , setStatus('rejected')
-  //     );
-  // }, [page, search]);
-
   const toggleModal = (largeImage, user) => {
     setShowModal(!showModal);
     setLargeImageId(largeImage);
     setLargeImageIdUser(user);
   };
-
-  // const largeImageId = imageLargeId => {
-  //   this.setState({ imageLargeId });
-  // };
-  // loadMore = () => {
-  //   const { page } = this.state;
-  //   const newPage = page + 1;
-
-  //   this.setState({ page: newPage });
-  //   console.log('123');
-  // };
-
-  // const { images, status, showModal, largeImageId, largeImageIdUser } =
-  //   this.state;
-  // const { search } = this.props;
 
   if (status === Status.IDLE) {
     return <div className={css.att}>Введіть дані для пошуку!</div>;

@@ -4,9 +4,6 @@ import PropTypes from 'prop-types';
 import css from './SearchBar.module.css';
 
 function SearchBar({ onSubmit }) {
-  // state = {
-  //   search: '',
-  // };
   const [search, setSearch] = useState('');
 
   const handleNameChange = e => {
